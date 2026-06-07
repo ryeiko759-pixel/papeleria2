@@ -1,0 +1,104 @@
+/* Estilos Generales del Footer */
+.pie-pagina {
+  background-color: #1a252f; /* Azul oscuro elegante */
+  color: #ecf0f1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 60px 0 20px 0;
+  margin-top: 50px;
+}
+
+/* Contenedor en cuadrícula (Flexbox para diseño responsivo) */
+.footer-contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* Columnas individuales */
+.footer-columna {
+  flex: 1;
+  min-width: 250px; /* Evita que se colapsen en pantallas chicas */
+}
+
+.footer-columna h3 {
+  color: #dfb76c; /* Tono dorado/arena elegante para los títulos */
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Línea sutil debajo de los títulos */
+.footer-columna h3::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background-color: #dfb76c;
+  margin-top: 8px;
+}
+
+.footer-columna p {
+  line-height: 1.6;
+  color: #bdc3c7;
+  font-size: 0.95rem;
+}
+
+/* Listas de enlaces */
+.footer-columna ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-columna ul li {
+  margin-bottom: 12px;
+}
+
+.footer-columna ul li a {
+  color: #bdc3c7;
+  text-decoration: none;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+/* Efecto elegante al pasar el mouse por los enlaces */
+.footer-columna ul li a:hover {
+  color: #dfb76c;
+  padding-left: 6px;
+}
+
+/* Redes Sociales */
+.redes-sociales {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.icono-social {
+  color: #1a252f;
+  background-color: #bdc3c7;
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.icono-social:hover {
+  background-color: #dfb76c;
+  transform: translateY(-3px); /* Pequeño brinco elegante */
+}
+
+/* Barra inferior de Copyright */
+.footer-inferior {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}

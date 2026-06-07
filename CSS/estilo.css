@@ -1,0 +1,174 @@
+/* Variables de color */
+:root {
+    --azul-oscuro: #1a2a6c;
+    --azul-medio: #2a4858;
+    --hueso: #f5f5dc;
+    --hueso-hover: #e8e8c8;
+    --blanco: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--hueso);
+}
+
+/* --- Navegación --- */
+.navbar {
+    background-color: var(--azul-oscuro);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    /* Animación de entrada para la barra entera */
+    animation: slideDown 0.8s ease-out;
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Logo --- */
+.logo {
+    color: var(--hueso);
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo span {
+    color: var(--blanco);
+}
+
+/* --- Enlaces --- */
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li a {
+    color: var(--hueso);
+    text-decoration: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: 0.3s;
+    display: block;
+    /* Animación individual para cada link */
+    opacity: 0;
+    animation: fadeInLinks 0.5s ease forwards;
+    animation-delay: calc(0.2s * var(--i));
+}
+
+.nav-links li a:hover {
+    color: var(--blanco);
+    transform: translateY(-3px);
+}
+
+/* --- Menú Responsivo (Checkbox Hack) --- */
+.menu-check {
+    display: none;
+}
+
+.menu-btn {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-btn span {
+    width: 30px;
+    height: 3px;
+    background-color: var(--hueso);
+    transition: 0.4s;
+}
+
+/* --- Animaciones --- */
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes fadeInLinks {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Media Queries (Móvil) --- */
+@media screen and (max-width: 768px) {
+    .menu-btn {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 80px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--azul-medio);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s;
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    .nav-links li a {
+        font-size: 1.5rem;
+    }
+
+    /* Mostrar menú al activar checkbox */
+    .menu-check:checked ~ .nav-links {
+        right: 0;
+    }
+
+    /* Animación del icono de hamburguesa a X */
+    .menu-check:checked ~ .menu-btn span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+    .menu-check:checked ~ .menu-btn span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-check:checked ~ .menu-btn span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+}
+
+/* Hero de relleno */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--azul-oscuro);
+    text-align: center;
+    padding: 20px;
+}
+/* --- ESTILOS DEL CARRUSEL Y ESLOGAN --- */

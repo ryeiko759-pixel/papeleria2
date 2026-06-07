@@ -1,0 +1,73 @@
+/* Contenedor principal del Slider (restringe el tamaño visible) */
+.slider-container {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Capas para el difuminado lateral (Sombras flotantes a los lados) */
+.slider-container::before,
+.slider-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 10%; /* Controla qué tan ancho es el difuminado */
+    height: 100%;
+    z-index: 2;
+    pointer-events: none; /* Permite hacer click a través del difuminado si fuera necesario */
+}
+
+/* Difuminado izquierdo */
+.slider-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(245, 245, 245, 1), rgba(245, 245, 245, 0));
+}
+
+/* Difuminado derecho */
+.slider-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(245, 245, 245, 1), rgba(245, 245, 245, 0));
+}
+
+/* El riel que sostiene las imágenes juntas en línea horizontal */
+.slider-track {
+    display: flex;
+    width: 300%; /* 3 imágenes = 300% del ancho del contenedor */
+    height: 100%;
+    animation: cambioGaleria 12s infinite ease-in-out;
+}
+
+/* Cada una de las diapositivas individuales */
+.slide {
+    width: 33.33%; /* Cada imagen ocupa exactamente un tercio del riel */
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que las imágenes se adapten sin deformarse */
+}
+
+/* Animación matemática para 3 imágenes con pausas */
+@keyframes cambioGaleria {
+    /* Muestra Imagen 1 */
+    0%, 25% {
+        transform: translateX(0);
+    }
+    /* Transición de 1 a 2 */
+    33%, 58% {
+        transform: translateX(-33.33%);
+    }
+    /* Transición de 2 a 3 */
+    66%, 91% {
+        transform: translateX(-66.66%);
+    }
+    /* Vuelve al inicio de golpe al terminar el ciclo */
+    100% {
+        transform: translateX(0);
+    }
+}

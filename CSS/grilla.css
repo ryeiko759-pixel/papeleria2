@@ -1,0 +1,196 @@
+
+
+.titulo-seccion {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+/* --- LA GRILLA (Grid 4x3) --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Columnas del mismo tamaño */
+    gap: 25px;                            /* Espaciado entre tarjetas */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- TARJETAS DE LA GRILLA --- */
+.grid-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+    /* ANIMACIÓN DE ÉNFASIS (Transición base para el Hover) */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+    border: 1px solid #eaeaea;
+}
+
+/* Efecto de Énfasis al pasar el cursor (Hover) */
+.grid-item:hover {
+    transform: translateY(-10px) scale(1.02); /* Se eleva y crece un poco */
+    box-shadow: 0 15px 30px rgba(180, 140, 110, 0.25); /* Sombra cálida difusa */
+    border-color: #d4a373; /* Borde sutil color pastel/papelería */
+}
+
+/* --- BLOQUE DE IMAGEN (ARRIBA) --- */
+.img-box {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    cursor: pointer;
+    display: block;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease; /* Énfasis interno para la foto */
+}
+
+/* Animación de énfasis en la propia foto al hacer hover */
+.grid-item:hover .img-box img {
+    transform: scale(1.1); /* Zoom suave a la imagen */
+}
+
+/* --- BLOQUE DE TEXTO (ABAJO) --- */
+.text-box {
+    padding: 15px;
+    text-align: center;
+    background-color: #ffffff;
+    flex-grow: 1; /* Hace que todos los textos se alineen abajo aunque varíe el contenido */
+}
+
+.text-box h3 {
+    font-size: 1.05rem;
+    color: #333333;
+    margin-bottom: 6px;
+}
+
+.text-box p {
+    font-size: 0.85rem;
+    color: #777777;
+}
+
+/* ==========================================================================
+   MÁGIA DE LOS MODALES SIN JAVASCRIPT (CHECKBOX HACK)
+   ========================================================================== */
+
+/* 1. Ocultar por completo los Checkboxes de control */
+.modal-checker {
+    display: none;
+}
+
+/* 2. El fondo oscuro del modal (Oculto por defecto) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px); /* Difumina ligeramente lo que está detrás */
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* El truco de ocultarlo manteniendo la fluidez de la animación */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* 3. La caja blanca del contenido interno del modal */
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    
+    /* Efecto de escala inicial pequeño para que "brote" al abrirse */
+    transform: scale(0.7);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-content img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.modal-content h2 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    font-size: 0.95rem;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Botón de cerrar diseñado a partir de una etiqueta HTML <label> */
+.close-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #d4a373;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #b98453;
+}
+
+/* 4. DISPARADORES DE ACCIÓN (Cuando el Checkbox está :checked) */
+
+/* Si se marca el checkbox, muestra el fondo oscuro */
+.modal-checker:checked ~ .modal-overlay {
+    opacity: 1;
+    pointer-events: auto; /* Permite clickear la ventana */
+}
+
+/* Si se marca el checkbox, hace crecer el contenido blanco al tamaño real */
+.modal-checker:checked ~ .modal-overlay .modal-content {
+    transform: scale(1);
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD (Para que se adapte a tablets y teléfonos móviles)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 sola columna en smartphones */
+    }
+}
